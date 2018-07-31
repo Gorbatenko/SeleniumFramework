@@ -1,0 +1,7 @@
+ua\com\rozetka\pages\main\header\HeaderBlock.class
+ua\com\rozetka\pages\main\RightBlock.class
+ua\com\rozetka\pages\main\CentralBlock.class
+ua\com\rozetka\tests\MainPageTests.class
+ua\com\rozetka\pages\main\BottomProductBlock.class
+ua\com\rozetka\pages\main\LeftNavigationMenuBlock.class
+ua\com\rozetka\pages\main\MainPage.class

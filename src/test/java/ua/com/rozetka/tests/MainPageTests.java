@@ -1,56 +1,55 @@
 package ua.com.rozetka.tests;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import ua.com.rozetka.pages.main.MainPage;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
-import static org.junit.Assert.assertTrue;
+import static com.codeborne.selenide.Selenide.*;
 
 public class MainPageTests {
-    private static WebDriver driver;
-    private MainPage page = new MainPage();
-    private String cityRef;
-    private static Properties properties = new Properties();
+    private static InputStream file;
+    private static Properties config = new Properties();
 
+    private static String driverType;
+    private static String driverAddress;
+    private static String selenideBrowser;
+    private static String siteAddress;
 
     @BeforeClass
     public static void setUp() throws IOException {
-        try {
-            properties.load(new FileInputStream("W:/GIT projects/SeleniumFramework/src/test/resources/config.properties"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.setProperty(properties.getProperty("driver.type"), properties.getProperty("driver.address"));
-        ChromeDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        file = new FileInputStream("src/test/java/ua/com/rozetka/config/сonfig.properties");
+        config.load(file);
+
+        driverType = config.getProperty("driver.type");
+        driverAddress = config.getProperty("driver.address");
+        selenideBrowser = config.getProperty("selenide.browser");
+        siteAddress = config.getProperty("site.address");
+
+        System.setProperty(driverType, driverAddress);
+        System.setProperty("selenide.browser", selenideBrowser);
+        open(siteAddress);
     }
 
     @Test
-    public void shouldAppearCityPopUpOnCityRefClick(){
-        //given
-        driver.get("https://rozetka.com.ua");
-        String CityBlock = page.getHeader().getCityRef();
-        WebElement cityRefElement = driver.findElement(By.cssSelector(cityRef));
-
-        //when
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public void headerTest() {
+        $("input.rz-header-search-input-text").setValue("lenovo");
+        sleep(3000);
+        ElementsCollection items = $$("div.rz-header-search-suggest-i");
+        for (SelenideElement item : items) {
+            if (item.getText().contains("Мобильные телефоны")) {
+                item.click();
+                break;
+            }
         }
-        cityRefElement.click();
+        sleep(8000);
 
-        //then
-        String cityChoosePopUp = page.getHeader().getCityChoosePopUp();
-        WebElement popUpElement = driver.findElement(By.cssSelector(cityChoosePopUp));
-
-        assertTrue("Блок с названием городов не появился", popUpElement.isDisplayed());
+        $("h1.rz-search-result-title").shouldBe(Condition.visible);
     }
 }
