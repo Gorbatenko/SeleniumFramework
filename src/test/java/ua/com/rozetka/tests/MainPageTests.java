@@ -5,6 +5,9 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import ua.com.rozetka.pages.main.MainPage;
+import ua.com.rozetka.pages.main.header.HeaderBlock;
+import ua.com.rozetka.pages.search.SearchPage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,10 +15,14 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import static com.codeborne.selenide.Selenide.*;
+import static org.junit.Assert.assertEquals;
 
 public class MainPageTests {
     private static InputStream file;
     private static Properties config = new Properties();
+
+    private MainPage mainPage = new MainPage();
+    private SearchPage searchPage = new SearchPage();
 
     private static String driverType;
     private static String driverAddress;
@@ -38,18 +45,26 @@ public class MainPageTests {
     }
 
     @Test
-    public void headerTest() {
-        $("input.rz-header-search-input-text").setValue("lenovo");
-        sleep(3000);
-        ElementsCollection items = $$("div.rz-header-search-suggest-i");
-        for (SelenideElement item : items) {
-            if (item.getText().contains("Мобильные телефоны")) {
-                item.click();
-                break;
-            }
-        }
-        sleep(8000);
+    public void shouldTheSearchResultsPageDisplaysTheSearchQueryInTheTitleTest() {
 
-        $("h1.rz-search-result-title").shouldBe(Condition.visible);
+        //given
+        HeaderBlock header = mainPage.getHeader();
+        String searchQuery = "Lenovo";
+        String fullSearchQuery = "Мобильные телефоны";
+
+        //when
+        header.getSearchBar()
+                .setValue(searchQuery);
+
+        ElementsCollection items = mainPage.getHeader()
+                .getItemsForSearch();
+
+        header.setSearch(items, fullSearchQuery);
+
+        String searchResultTitle = searchPage.getHeader()
+                .getSearchResultTitle().getText();
+
+        //then
+        assertEquals("На странице результатов поиска в заголовке не отображается поисковый запрос", searchQuery, searchResultTitle);
     }
 }

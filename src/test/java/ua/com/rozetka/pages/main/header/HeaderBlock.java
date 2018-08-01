@@ -1,26 +1,37 @@
 package ua.com.rozetka.pages.main.header;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class HeaderBlock {
-    private WebElement logo;
-    private WebElement contacts;
-    private WebElement langToggle;
-    private List<WebElement> headerTopMenuItems;
-    private String cityRef = "a.header-city-select-link";
-    private String cityChoosePopUp = "div.header-city-choose-popup";
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
+public class HeaderBlock {
+    private List<WebElement> headerTopMenuItems;
 
     public void setHeaderTopMenuItems(List<WebElement> items) {
         this.headerTopMenuItems = items;
     }
-    public String getCityRef(){
-        return cityRef;
+
+    public SelenideElement getSearchBar(){
+        return $("input.rz-header-search-input-text").shouldBe(Condition.visible);
     }
 
-    public String getCityChoosePopUp(){
-        return cityChoosePopUp;
+    public ElementsCollection getItemsForSearch(){
+        $("div.rz-header-search-suggest-g").shouldBe(Condition.visible);
+        return $$("div.rz-header-search-suggest-i");
+    }
+
+    public void setSearch(ElementsCollection items, String searchCategory){
+        for (SelenideElement item : items) {
+            if (item.getText().contains(searchCategory)) {
+                item.click();
+                break;
+            }
+        }
     }
 }
