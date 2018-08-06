@@ -1,8 +1,7 @@
 package ua.com.rozetka.tests;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
+import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import ua.com.rozetka.pages.main.MainPage;
@@ -18,26 +17,21 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.junit.Assert.assertEquals;
 
 public class MainPageTests {
-    private static InputStream file;
+
     private static Properties config = new Properties();
-
     private MainPage mainPage = new MainPage();
-    private SearchPage searchPage = new SearchPage();
 
-    private static String driverType;
-    private static String driverAddress;
-    private static String selenideBrowser;
-    private static String siteAddress;
+    private SearchPage searchPage = new SearchPage();
 
     @BeforeClass
     public static void setUp() throws IOException {
-        file = new FileInputStream("src/test/java/ua/com/rozetka/config/сonfig.properties");
+        InputStream file = new FileInputStream("src/test/java/ua/com/rozetka/config/сonfig.properties");
         config.load(file);
 
-        driverType = config.getProperty("driver.type");
-        driverAddress = config.getProperty("driver.address");
-        selenideBrowser = config.getProperty("selenide.browser");
-        siteAddress = config.getProperty("site.address");
+        String driverType = config.getProperty("driver.type");
+        String driverAddress = config.getProperty("driver.address");
+        String selenideBrowser = config.getProperty("selenide.browser");
+        String siteAddress = config.getProperty("site.address");
 
         System.setProperty(driverType, driverAddress);
         System.setProperty("selenide.browser", selenideBrowser);
@@ -45,26 +39,51 @@ public class MainPageTests {
     }
 
     @Test
-    public void shouldTheSearchResultsPageDisplaysTheSearchQueryInTheTitleTest() {
+    public void shouldSearchResultsPageDisplaysSearchQueryInTitleTest() {
 
         //given
         HeaderBlock header = mainPage.getHeader();
-        String searchQuery = "Lenovo";
+        String expectedResultTitle = "Lenovo";
         String fullSearchQuery = "Мобильные телефоны";
 
         //when
-        header.getSearchBar()
-                .setValue(searchQuery);
+        header.getSearchBar().setValue(expectedResultTitle);
 
         ElementsCollection items = mainPage.getHeader()
                 .getItemsForSearch();
 
         header.setSearch(items, fullSearchQuery);
 
-        String searchResultTitle = searchPage.getHeader()
-                .getSearchResultTitle().getText();
+        String actualResultTitle = mainPage.getHeader().getSearchPage().getHeader().getSearchResultTitle().getText();
 
         //then
-        assertEquals("На странице результатов поиска в заголовке не отображается поисковый запрос", searchQuery, searchResultTitle);
+        assertEquals("На странице результатов поиска в заголовке не отображается поисковый запрос",
+                expectedResultTitle, actualResultTitle);
+    }
+
+    @Test
+    public void shouldBeShowedPopupComparison() {
+
+        //given
+        HeaderBlock header = mainPage.getHeader();
+        String expectedResultTitle = "Нет товаров в сравнении\nДобавляйте товары к сравнению характеристик\n" +
+                "и выбирайте самый подходящий вам товар";
+
+        //when
+        header.getBtnComparison().hover();
+
+        sleep(300);
+        String actualResultTitle = header.getPopupComparison().getText();
+
+        //then
+        assertEquals("Название попапа сравнения не соответствует ожидаемому",
+                expectedResultTitle, actualResultTitle);
+    }
+
+    @After
+    public void postTest() {
+        String siteAddress = config.getProperty("site.address");
+
+        open(siteAddress);
     }
 }

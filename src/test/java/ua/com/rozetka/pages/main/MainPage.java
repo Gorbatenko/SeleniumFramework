@@ -14,4 +14,6 @@ public class MainPage {
     public LeftNavigationMenuBlock getLeftBlock() {
         return leftBlock;
     }
+
+
 }

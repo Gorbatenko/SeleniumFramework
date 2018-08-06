@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.WebElement;
+import ua.com.rozetka.pages.search.SearchPage;
 
 import java.util.List;
 
@@ -33,5 +34,17 @@ public class HeaderBlock {
                 break;
             }
         }
+    }
+
+    public SearchPage getSearchPage() {
+        return new SearchPage();
+    }
+
+    public SelenideElement getBtnComparison() {
+        return $("div#comparison").shouldBe(Condition.visible);
+    }
+
+    public SelenideElement getPopupComparison() {
+        return $("div#comparison-popup").shouldBe(Condition.visible);
     }
 }
