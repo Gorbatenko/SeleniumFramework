@@ -2,10 +2,15 @@ package ua.com.rozetka.pages.goods;
 
 public class GoodsPage {
 
+    private CentralBlock centralBlock = new CentralBlock();
+    private HeaderBlock headerBlock = new HeaderBlock();
+
     public CentralBlock getCentralBlock() {
         return centralBlock;
     }
 
-    private CentralBlock centralBlock = new CentralBlock();
+    public HeaderBlock getHeaderBlock() {
+        return headerBlock;
+    }
 
 }

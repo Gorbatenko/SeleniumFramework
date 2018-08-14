@@ -1,8 +1,0 @@
-ua\com\rozetka\pages\main\RightBlock.class
-ua\com\rozetka\pages\search\SearchPage.class
-ua\com\rozetka\pages\main\CentralBlock.class
-ua\com\rozetka\pages\search\result\central\header\CentralHeaderBlock.class
-ua\com\rozetka\pages\main\MainPage.class
-ua\com\rozetka\pages\main\header\HeaderBlock.class
-ua\com\rozetka\tests\MainPageTests.class
-ua\com\rozetka\pages\main\BottomProductBlock.class
