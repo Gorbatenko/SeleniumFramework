@@ -10,7 +10,7 @@ import ua.com.rozetka.pages.goods.GoodsPage;
 import ua.com.rozetka.pages.main.MainPage;
 import ua.com.rozetka.pages.main.left.block.LeftBlock;
 import ua.com.rozetka.pages.search.SearchPage;
-import ua.com.rozetka.pages.comparison.СomparisonPage;
+import ua.com.rozetka.pages.comparison.ComparisonPage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -18,12 +18,11 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
 import static org.junit.Assert.assertEquals;
 
-public class ComparisonTests {
+public class ComparisonTest {
 
-    private static Logger logger = Logger.getLogger(ComparisonTests.class);
+    private static Logger logger = Logger.getLogger(ComparisonTest.class);
     private static Properties config = new Properties();
     private MainPage mainPage = new MainPage();
 
@@ -31,7 +30,7 @@ public class ComparisonTests {
 
     @BeforeClass
     public static void setUp() throws IOException {
-        InputStream file = new FileInputStream("src/test/java/ua/com/rozetka/config/сonfig.properties");
+        InputStream file = new FileInputStream("src\\test\\java\\ua\\com\\rozetka\\config\\config.properties");
         config.load(file);
 
         String driverType = config.getProperty("driver.type");
@@ -58,10 +57,9 @@ public class ComparisonTests {
         //when
         logger.info("Заходим на главную страницу Розетки");
         LeftBlock mainMenu = mainPage.getLeftBlock();
-        mainMenu.getMainMenu();
 
         logger.info("Наводим на 'Ноутбуки и компьютеры' в левом блоке");
-        mainMenu.getCategoryCatalogPopup(mainMenuCategory);
+        mainMenu.setCategoryCatalogPopup(mainMenuCategory);
 
         logger.info("Выбираем 'ноутбуки' в появившемся блоке");
         mainMenu.setCategory(categoryMenuItem);
@@ -70,14 +68,14 @@ public class ComparisonTests {
         logger.info("Выбираем 'Ноутбуки с SSD'");
         CentralBlock centralBlock = catalogPage.getCentralBlock();
         centralBlock.setCategory(categorySubItem);
-        GoodsPage goodsPage = centralBlock.getGoodsPage();
 
         logger.info("Для 1 и 2 в списке нажимаем иконку весов");
+        GoodsPage goodsPage = centralBlock.getGoodsPage();
         goodsPage.getCentralBlock().setItemToComparison(1);
         goodsPage.getCentralBlock().setItemToComparison(2);
 
         logger.info("В шапке нажимаем 'Сравнение'");
-        СomparisonPage comparisonPage = goodsPage.getHeaderBlock().getComparisonPage();
+        ComparisonPage comparisonPage = goodsPage.getHeaderBlock().getComparisonPage();
 
         logger.info("Нажимаем кнопку 'Сравнить эти товары'");
         ComparisonItemsPage comparisonItemsPage = comparisonPage.getCentralBlock().getComparisonItemsPage();

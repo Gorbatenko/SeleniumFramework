@@ -2,11 +2,15 @@ package ua.com.rozetka.pages.catalog;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import org.apache.log4j.Logger;
 import ua.com.rozetka.pages.goods.GoodsPage;
+import ua.com.rozetka.tests.ComparisonTest;
 
 import static com.codeborne.selenide.Selenide.$$;
 
 public class CentralBlock {
+
+    private static Logger logger = Logger.getLogger(ComparisonTest.class);
 
     private GoodsPage goodsPage = new GoodsPage();
 
@@ -22,10 +26,12 @@ public class CentralBlock {
     }
 
     public void setCategory(String categorySubItem) {
+        logger.debug("Выбор категории: " + categorySubItem);
         category(categorySubItem);
     }
 
     public GoodsPage getGoodsPage() {
+        logger.debug("Переход к просмотру товаров.");
         return goodsPage;
     }
 }

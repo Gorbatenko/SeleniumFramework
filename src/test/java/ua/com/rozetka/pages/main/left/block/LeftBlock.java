@@ -5,28 +5,19 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.log4j.Logger;
 import ua.com.rozetka.pages.catalog.CatalogPage;
-import ua.com.rozetka.tests.ComparisonTests;
 
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.sleep;
 
 public class LeftBlock {
     private static Logger logger = Logger.getLogger(LeftBlock.class);
 
     private SelenideElement header() {
-        SelenideElement btn = $("a#fat_menu_btn");
-        return btn;
+        return $("a#fat_menu_btn");
     }
 
-    private SelenideElement mainMenu() {
-        SelenideElement menu = $("ul#m-main-ul");
-        menu.shouldBe(Condition.appear);
-        return menu;
-    }
-
-    private SelenideElement categoryCatalogPopup(String mainMenuCategory) {
+    private void categoryCatalogPopup(String mainMenuCategory) {
         ElementsCollection menuCategories = $$("li.f-menu-l-i");
 
         for (SelenideElement menuCategory : menuCategories) {
@@ -36,9 +27,7 @@ public class LeftBlock {
             }
         }
 
-        SelenideElement popupMenu = $(byXpath("//div[@name='second_menu']"));
-        popupMenu.shouldBe(Condition.appear);
-        return popupMenu;
+        $(byXpath("//div[@name='second_menu']")).shouldBe(Condition.appear);
     }
 
     private void category(String categoryMenuItem) {
@@ -53,30 +42,26 @@ public class LeftBlock {
     }
 
     private CatalogPage catalogPage() {
-        CatalogPage catalogPage = new CatalogPage();
-        return catalogPage;
+        return new CatalogPage();
     }
 
-    public SelenideElement getMainMenu() {
-        logger.debug("Возвращаю главное меню.");
-        return mainMenu();
-    }
-
-    public SelenideElement getCategoryCatalogPopup(String mainMenuCategory) {
-        logger.debug("Перехожу на категорию в главном меню.");
-        return categoryCatalogPopup(mainMenuCategory);
+    public void setCategoryCatalogPopup(String mainMenuCategory) {
+        logger.debug("В главном меню выбрана категория: " + mainMenuCategory);
+        categoryCatalogPopup(mainMenuCategory);
     }
 
     public void setCategory(String categoryMenuItem) {
-        logger.debug("Перехожу на категорию в выпадающем списке главного меню.");
+        logger.debug("В выпадающем списке главного меню выбрана категория: " + categoryMenuItem);
         category(categoryMenuItem);
     }
 
     public SelenideElement getHeader() {
+        logger.debug("Получение хедера.");
         return header();
     }
 
     public CatalogPage getCatalogPage() {
+        logger.debug("Переход к каталогу товаров.");
         return catalogPage();
     }
 

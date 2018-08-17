@@ -49,10 +49,7 @@ public class MainPageTests {
         //when
         header.getSearchBar().setValue(expectedResultTitle);
 
-        ElementsCollection items = mainPage.getHeader()
-                .getItemsForSearch();
-
-        header.setSearch(items, fullSearchQuery);
+        header.setSearch(fullSearchQuery);
 
         String actualResultTitle = mainPage.getHeader().getSearchPage().getHeader().getSearchResultTitle().getText();
 
