@@ -48,8 +48,8 @@ public class ComparisonTest {
 
         System.setProperty(driverType, driverAddress);
         System.setProperty("selenide.browser", selenideBrowser);
+        System.setProperty("selenide.browserSize","1920x1080");
         open(siteAddress);
-
     }
 
     @Test

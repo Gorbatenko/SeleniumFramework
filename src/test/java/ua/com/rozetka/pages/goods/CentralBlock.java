@@ -19,7 +19,7 @@ public class CentralBlock {
         itemBoard.hover();
 
         itemBoard.$("span.g-compare").shouldBe(Condition.visible).click();
-        sleep(500);
+        sleep(600);
     }
 
     public void setItemToComparison(int itemNumber) {

@@ -18,7 +18,7 @@ public class LeftBlock {
     }
 
     private void categoryCatalogPopup(String mainMenuCategory) {
-        ElementsCollection menuCategories = $$("li.f-menu-l-i");
+        ElementsCollection menuCategories = $$("a.f-menu-l-i-link");
 
         for (SelenideElement menuCategory : menuCategories) {
             if (menuCategory.getText().contains(mainMenuCategory)) {
@@ -27,7 +27,7 @@ public class LeftBlock {
             }
         }
 
-        $(byXpath("//div[@name='second_menu']")).shouldBe(Condition.appear);
+        $(byXpath("//div[@name='second_menu']")).shouldBe(Condition.visible);
     }
 
     private void category(String categoryMenuItem) {
@@ -56,7 +56,7 @@ public class LeftBlock {
     }
 
     public SelenideElement getHeader() {
-        logger.debug("Получение хедера.");
+        logger.debug("Получение верхней части экрана.");
         return header();
     }
 
