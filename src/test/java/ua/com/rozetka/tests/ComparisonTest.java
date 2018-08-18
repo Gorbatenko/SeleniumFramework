@@ -1,8 +1,13 @@
 package ua.com.rozetka.tests;
 
 import org.apache.log4j.Logger;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import ua.com.rozetka.pages.catalog.CatalogPage;
 import ua.com.rozetka.pages.catalog.CentralBlock;
 import ua.com.rozetka.pages.comparison.items.ComparisonItemsPage;
@@ -30,6 +35,8 @@ public class ComparisonTest {
 
     @BeforeClass
     public static void setUp() throws IOException {
+        logger.info("Запуск тестов класса: ComparisonTest");
+
         InputStream file = new FileInputStream("src\\test\\java\\ua\\com\\rozetka\\config\\config.properties");
         config.load(file);
 
@@ -37,6 +44,7 @@ public class ComparisonTest {
         String driverAddress = config.getProperty("driver.address");
         String selenideBrowser = config.getProperty("selenide.browser");
         String siteAddress = config.getProperty("site.address");
+
 
         System.setProperty(driverType, driverAddress);
         System.setProperty("selenide.browser", selenideBrowser);
@@ -89,11 +97,14 @@ public class ComparisonTest {
         logger.info("Считаем сколько строк отличий");
         actualDifferentElementsCount = comparisonItemsPage.getCentralBlock().getDifferentElementsCount();
 
-//        actualDifferentElementsCount++; //Разкомментировать, чтобы тест упал.
-
         //then
         assertEquals("Количество различий между товарами, при использовании фильтра," +
                         " не соответствует фактическому.",
                 expectedDifferentElementsCount, actualDifferentElementsCount);
+    }
+
+    @AfterClass
+    public static void off() {
+        logger.info("Конец тестов класса: ComparisonTest\n");
     }
 }
