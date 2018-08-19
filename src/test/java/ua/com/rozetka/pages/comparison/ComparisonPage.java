@@ -11,5 +11,4 @@ public class ComparisonPage {
     }
 
     private CentralBlock centralBlock = new CentralBlock();
-
 }

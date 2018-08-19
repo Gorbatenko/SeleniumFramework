@@ -18,7 +18,7 @@ public class HeaderBlock {
     }
 
     public ComparisonPage getComparisonPage() {
-        logger.debug("Переход на страницу сравнения товаров.");
+        logger.info("Переход к сравнению товаров.");
         return comparisonPage();
     }
 }

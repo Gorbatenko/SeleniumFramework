@@ -9,6 +9,7 @@ import ua.com.rozetka.pages.catalog.CatalogPage;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static ua.com.rozetka.utils.Utils.closeBunner;
 
 public class LeftBlock {
     private static Logger logger = Logger.getLogger(LeftBlock.class);
@@ -46,12 +47,14 @@ public class LeftBlock {
     }
 
     public void setCategoryCatalogPopup(String mainMenuCategory) {
-        logger.debug("В главном меню выбрана категория: " + mainMenuCategory);
+        logger.info("В главном меню выбрана категория: " + mainMenuCategory);
+        closeBunner();
         categoryCatalogPopup(mainMenuCategory);
     }
 
     public void setCategory(String categoryMenuItem) {
-        logger.debug("В выпадающем списке главного меню выбрана категория: " + categoryMenuItem);
+        logger.info("В выпадающем списке главного меню выбрана категория: " + categoryMenuItem);
+        closeBunner();
         category(categoryMenuItem);
     }
 
@@ -64,7 +67,4 @@ public class LeftBlock {
         logger.debug("Переход к каталогу товаров.");
         return catalogPage();
     }
-
-
-
 }

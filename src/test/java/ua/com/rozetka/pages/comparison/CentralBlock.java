@@ -19,12 +19,7 @@ public class CentralBlock {
     }
 
     public ComparisonItemsPage getComparisonItemsPage() {
-        logger.debug("Переход к непосредственному сравнению товаров.");
+        logger.info("Нажимаем кнопку 'Сравнить эти товары'");
         return comparisonItemsPage();
     }
-
-
-
-
-
 }

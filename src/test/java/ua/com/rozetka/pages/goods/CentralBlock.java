@@ -15,7 +15,7 @@ public class CentralBlock {
 
     private void addItemToComparison(int itemNumber) {
         ElementsCollection itemBoards = $$("div.g-i-tile-i-box-desc");
-        SelenideElement itemBoard = itemBoards.get(itemNumber-1);
+        SelenideElement itemBoard = itemBoards.get(itemNumber - 1);
         itemBoard.hover();
 
         itemBoard.$("span.g-compare").shouldBe(Condition.visible).click();
@@ -23,7 +23,7 @@ public class CentralBlock {
     }
 
     public void setItemToComparison(int itemNumber) {
-        logger.debug("Добавление к сравнению товара №" + itemNumber);
+        logger.info("Добавление к сравнению товара №" + itemNumber);
         addItemToComparison(itemNumber);
     }
 }

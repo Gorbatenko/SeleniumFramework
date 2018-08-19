@@ -11,5 +11,4 @@ public class CatalogPage {
         logger.debug("Получение центральной части страницы.");
         return centralBlock;
     }
-
 }

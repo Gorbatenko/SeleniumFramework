@@ -21,30 +21,22 @@ public class CentralBlock {
         logger.debug("Создаю перечень строк.");
         ElementsCollection rows = $$("div.comparison-t-row");
         ElementsCollection comparisonItems;
-
         int counterDifferent = 0;
 
         logger.debug("Приступаю к перебору строк.");
         for (SelenideElement row : rows) {
             comparisonItems = row.$$("div.comparison-t-cell");
 
-            int counter = 0;
-            for (SelenideElement comparisonItem : comparisonItems) {
-                logger.debug("Текст №" + counter + " - " + comparisonItems.get(counter).getText());
-                counter++;
-            }
-
             if (!comparisonItems.get(0).getText().equals(comparisonItems.get(1).getText())) {
                 counterDifferent++;
                 logger.debug("Счетчик различий изменён = " + counterDifferent);
             }
         }
-
         return counterDifferent;
     }
 
     public int getDifferentElementsCount() {
-        logger.debug("Получение количества различий товаров.");
+        logger.info("Считаем строки с отличиями");
         return differentElementsHandMade();
     }
 }

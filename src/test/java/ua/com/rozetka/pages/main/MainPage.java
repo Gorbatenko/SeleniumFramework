@@ -11,7 +11,7 @@ public class MainPage {
     private HeaderBlock header = new HeaderBlock();
     private LeftBlock leftBlock = new LeftBlock();
 
-    public HeaderBlock getHeader(){
+    public HeaderBlock getHeader() {
         logger.debug("Получение верхней части страницы.");
         return header;
     }
@@ -20,6 +20,4 @@ public class MainPage {
         logger.debug("Получение левой части страницы.");
         return leftBlock;
     }
-
-
 }

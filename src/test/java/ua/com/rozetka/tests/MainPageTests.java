@@ -1,6 +1,5 @@
 package ua.com.rozetka.tests;
 
-import com.codeborne.selenide.ElementsCollection;
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -35,6 +34,12 @@ public class MainPageTests {
 
         System.setProperty(driverType, driverAddress);
         System.setProperty("selenide.browser", selenideBrowser);
+        open(siteAddress);
+    }
+
+    @After
+    public void afterTest() {
+        String siteAddress = config.getProperty("site.address");
         open(siteAddress);
     }
 
@@ -75,12 +80,5 @@ public class MainPageTests {
         //then
         assertEquals("Название попапа сравнения не соответствует ожидаемому",
                 expectedResultTitle, actualResultTitle);
-    }
-
-    @After
-    public void postTest() {
-        String siteAddress = config.getProperty("site.address");
-
-        open(siteAddress);
     }
 }

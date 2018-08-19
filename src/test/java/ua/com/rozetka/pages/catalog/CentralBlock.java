@@ -7,6 +7,7 @@ import ua.com.rozetka.pages.goods.GoodsPage;
 import ua.com.rozetka.tests.ComparisonTest;
 
 import static com.codeborne.selenide.Selenide.$$;
+import static ua.com.rozetka.utils.Utils.closeBunner;
 
 public class CentralBlock {
 
@@ -26,7 +27,8 @@ public class CentralBlock {
     }
 
     public void setCategory(String categorySubItem) {
-        logger.debug("Выбор категории: " + categorySubItem);
+        logger.info("Выбор категории: " + categorySubItem);
+        closeBunner();
         category(categorySubItem);
     }
 

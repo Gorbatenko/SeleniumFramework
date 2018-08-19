@@ -26,12 +26,12 @@ public class HeaderBlock {
         return $("input.rz-header-search-input-text").shouldBe(Condition.visible);
     }
 
-    public SelenideElement getSearchBar(){
+    public SelenideElement getSearchBar() {
         logger.debug("Получение поисковой строки.");
         return searchBar();
     }
 
-    public void setSearch(String searchCategory){
+    public void setSearch(String searchCategory) {
         logger.debug("В главном меню выбор категории: " + searchCategory);
 
         $("div.rz-header-search-suggest-g").shouldBe(Condition.visible);

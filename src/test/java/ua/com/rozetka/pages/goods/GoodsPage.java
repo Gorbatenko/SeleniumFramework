@@ -16,5 +16,4 @@ public class GoodsPage {
         logger.debug("Получение верхней части страницы.");
         return headerBlock;
     }
-
 }
