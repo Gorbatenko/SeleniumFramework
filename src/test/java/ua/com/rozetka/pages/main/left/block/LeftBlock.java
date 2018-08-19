@@ -48,7 +48,6 @@ public class LeftBlock {
 
     public void setCategoryCatalogPopup(String mainMenuCategory) {
         logger.info("В главном меню выбрана категория: " + mainMenuCategory);
-        closeBunner();
         categoryCatalogPopup(mainMenuCategory);
     }
 
