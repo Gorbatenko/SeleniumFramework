@@ -29,7 +29,7 @@ public class LeftBlock {
             }
         }
 
-        $(byXpath("//div[@name='second_menu']")).shouldBe(Condition.visible);
+        $(byXpath("//div[@name='second_menu']")).shouldBe(Condition.appear);
     }
 
     private void category(String categoryMenuItem) {
