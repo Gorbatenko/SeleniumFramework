@@ -1,5 +1,9 @@
 package ua.com.rozetka.tests;
 
+import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,7 +19,7 @@ import java.util.Properties;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.Assert.assertEquals;
 
-public class MainPageTests {
+public class MainPageTest {
 
     private static Properties config = new Properties();
     private MainPage mainPage = new MainPage();
@@ -44,6 +48,9 @@ public class MainPageTests {
     }
 
     @Test
+    @Issue("0002")
+    @Severity(SeverityLevel.MINOR)
+    @DisplayName("Проверка отображения запроса в заголовке результатов поиска.")
     public void shouldSearchResultsPageDisplaysSearchQueryInTitleTest() {
 
         //given
@@ -64,6 +71,9 @@ public class MainPageTests {
     }
 
     @Test
+    @Issue("0003")
+    @Severity(SeverityLevel.TRIVIAL)
+    @DisplayName("Проверка отображения пустого попапа сравнения товаров.")
     public void shouldBeShowedPopupComparison() {
 
         //given
