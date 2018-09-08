@@ -36,6 +36,20 @@ public class CentralBlock {
         return counterDifferent;
     }
 
+    private void cleanComparison() {
+        ElementsCollection closes = $$("img.comparison-g-delete-icon");
+
+        for (SelenideElement close : closes) {
+            close.click();
+        }
+    }
+
+    @Step("Удаление товаров из сравнения.")
+    public void cleanComparisonItems() {
+        logger.info("Удаление товаров из сравнения.");
+        cleanComparison();
+    }
+
     @Step("Считаем строки с отличиями.")
     public int getDifferentElementsCount() {
         logger.info("Считаем строки с отличиями");
