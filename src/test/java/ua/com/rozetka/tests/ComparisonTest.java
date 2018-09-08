@@ -5,6 +5,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
 import org.apache.log4j.Logger;
+import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import ua.com.rozetka.pages.catalog.CatalogPage;
@@ -46,6 +47,12 @@ public class ComparisonTest {
         System.setProperty("selenide.browserSize", selenideBrowserSize);
 
         logger.info("Заходим на главную страницу Розетки");
+        open(siteAddress);
+    }
+
+    @After
+    public void afterTest() {
+        String siteAddress = config.getProperty("site.address");
         open(siteAddress);
     }
 

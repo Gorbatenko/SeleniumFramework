@@ -23,5 +23,6 @@
 /out/
 /target/
 /build/
+/allure-results/
 
 *.iml

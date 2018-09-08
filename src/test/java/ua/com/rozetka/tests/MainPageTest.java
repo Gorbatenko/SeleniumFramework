@@ -28,7 +28,7 @@ public class MainPageTest {
 
     @BeforeClass
     public static void setUp() throws IOException {
-        InputStream file = new FileInputStream("src/test/java/ua/com/rozetka/config/сonfig.properties");
+        InputStream file = new FileInputStream("src\\test\\java\\ua\\com\\rozetka\\config\\config.properties");
         config.load(file);
 
         String driverType = config.getProperty("driver.type");
