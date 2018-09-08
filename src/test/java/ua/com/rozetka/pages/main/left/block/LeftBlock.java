@@ -3,6 +3,7 @@ package ua.com.rozetka.pages.main.left.block;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import ua.com.rozetka.pages.catalog.CatalogPage;
 
@@ -28,7 +29,6 @@ public class LeftBlock {
                 break;
             }
         }
-
         $(byXpath("//div[@name='second_menu']")).shouldBe(Condition.appear);
     }
 
@@ -47,6 +47,7 @@ public class LeftBlock {
         return new CatalogPage();
     }
 
+    @Step("В главном меню выбор категории.")
     public void setCategoryCatalogPopup(String mainMenuCategory) {
         logger.info("В главном меню выбрана категория: " + mainMenuCategory);
         sleep(500);
@@ -54,6 +55,7 @@ public class LeftBlock {
         categoryCatalogPopup(mainMenuCategory);
     }
 
+    @Step("В выпадающем списке главного меню выбор категории.")
     public void setCategory(String categoryMenuItem) {
         logger.info("В выпадающем списке главного меню выбрана категория: " + categoryMenuItem);
         category(categoryMenuItem);

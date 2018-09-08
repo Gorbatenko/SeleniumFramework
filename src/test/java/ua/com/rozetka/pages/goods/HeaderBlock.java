@@ -1,6 +1,7 @@
 package ua.com.rozetka.pages.goods;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import ua.com.rozetka.pages.comparison.ComparisonPage;
 
@@ -17,6 +18,7 @@ public class HeaderBlock {
         return comparisonPage;
     }
 
+    @Step("Переход к сравнению товаров.")
     public ComparisonPage getComparisonPage() {
         logger.info("Переход к сравнению товаров.");
         return comparisonPage();

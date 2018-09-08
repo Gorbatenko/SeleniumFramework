@@ -1,5 +1,9 @@
 package ua.com.rozetka.tests;
 
+import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.junit4.DisplayName;
 import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -46,6 +50,9 @@ public class ComparisonTest {
     }
 
     @Test
+    @Issue("0001")
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Проверка правильности отображения различий при сравнении товаров.")
     public void shouldBeDifferencesFilterShowsAllDifferences() {
         //when
         LeftBlock mainMenu = mainPage.getLeftBlock();

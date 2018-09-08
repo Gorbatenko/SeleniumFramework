@@ -2,6 +2,7 @@ package ua.com.rozetka.pages.catalog;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import ua.com.rozetka.pages.goods.GoodsPage;
 import ua.com.rozetka.tests.ComparisonTest;
@@ -26,6 +27,7 @@ public class CentralBlock {
         }
     }
 
+    @Step("Выбор категории.")
     public void setCategory(String categorySubItem) {
         logger.info("Выбор категории: " + categorySubItem);
         closeBunner();

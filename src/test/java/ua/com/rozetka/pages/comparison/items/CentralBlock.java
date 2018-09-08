@@ -2,6 +2,7 @@ package ua.com.rozetka.pages.comparison.items;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selectors.byXpath;
@@ -35,6 +36,7 @@ public class CentralBlock {
         return counterDifferent;
     }
 
+    @Step("Считаем строки с отличиями.")
     public int getDifferentElementsCount() {
         logger.info("Считаем строки с отличиями");
         return differentElementsHandMade();
