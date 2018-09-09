@@ -87,8 +87,6 @@ public class ComparisonTest {
         int actualDifferentElementsCount;
         actualDifferentElementsCount = comparisonItemsPage.getCentralBlock().getDifferentElementsCount();
 
-        comparisonItemsPage.getCentralBlock().cleanComparisonItems();
-
         //then
         assertEquals("Количество различий между товарами, при использовании фильтра," +
                         " не соответствует фактическому.",

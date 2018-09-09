@@ -3,6 +3,7 @@ package ua.com.rozetka.pages.main.header;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import ua.com.rozetka.pages.search.SearchPage;
@@ -43,6 +44,21 @@ public class HeaderBlock {
                 break;
             }
         }
+    }
+
+    private void cleanComparison() {
+        ElementsCollection closes = $$("img.list-compare-l-i-icon");
+
+        for (SelenideElement close : closes) {
+            close.click();
+            close.shouldBe(Condition.hidden);
+        }
+    }
+
+    @Step("Удаление товаров из сравнения.")
+    public void cleanComparisonItems() {
+        logger.info("Удаление товаров из сравнения.");
+        cleanComparison();
     }
 
     public SearchPage getSearchPage() {

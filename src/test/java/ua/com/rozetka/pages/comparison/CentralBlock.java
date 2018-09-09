@@ -14,7 +14,7 @@ public class CentralBlock {
     private ComparisonItemsPage comparisonItemsPage = new ComparisonItemsPage();
 
     private ComparisonItemsPage comparisonItemsPage() {
-        SelenideElement btnComparison = $(byXpath("//span[text()='Сравнить эти товары']"));
+        SelenideElement btnComparison = $(byXpath("//*[text()='Сравнить эти товары']"));
         btnComparison.shouldBe(Condition.visible).click();
         return comparisonItemsPage;
     }

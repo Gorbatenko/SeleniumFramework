@@ -83,6 +83,9 @@ public class MainPageTest {
 
         //when
         header.getBtnComparison().hover();
+        header.cleanComparisonItems();
+
+        header.getBtnComparison().hover();
 
         sleep(300);
         String actualResultTitle = header.getPopupComparison().getText();
