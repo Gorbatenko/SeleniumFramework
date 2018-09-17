@@ -56,7 +56,7 @@ public class MainPageTest {
         //given
         HeaderBlock header = mainPage.getHeader();
         String expectedResultTitle = "Lenovo";
-        String fullSearchQuery = "Мобильные телефоны";
+        String fullSearchQuery = "Ноутбуки";
 
         //when
         header.getSearchBar().setValue(expectedResultTitle);
